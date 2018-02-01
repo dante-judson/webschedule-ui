@@ -30,4 +30,19 @@ export class ListComponent implements OnInit {
     });
   }
 
+  getIdadeFromData(dataNascimento){
+    dataNascimento = new Date(dataNascimento);
+    
+    let today = new Date();
+    let idade = today.getFullYear() - dataNascimento.getFullYear();
+
+    dataNascimento.setFullYear(today.getFullYear());
+
+    if(dataNascimento > today){
+      idade --;
+    } 
+
+    return idade;
+  }
+
 }

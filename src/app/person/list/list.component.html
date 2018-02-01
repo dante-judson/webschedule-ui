@@ -4,26 +4,21 @@
 
   <div class="row">
     <div class="form-group col">
-      <label>Nome:</label>
-      <input type="text" class="form-control">
+      <label>Pesquisar:</label>
+      <input type="text" class="form-control" #filter placeholder="Pesquisar por qualquer coluna">
     </div>
-
-    <div class="form-group col">
-      <label>CPF:</label>
-      <input type="text" class="form-control">
-    </div>
-  </div>
 
   <div class="row ml-1">
     <button class="btn btn-primary mb-2" [routerLink]="['/form']">Cadastrar</button>
 
-    <p-dataTable [value]="persons" [responsive]="true">
+    <p-dataTable [value]="persons" [responsive]="true" [globalFilter]="filter">
       <p-column field="id" header="ID"></p-column>
       <p-column field="nome" header="Nome"></p-column>
       <p-column field="email" header="Email"></p-column>
+      <p-column field="cpf" header="CPF"></p-column>
       <p-column header="Idade">
         <ng-template pTemplate="body" let-person="rowData">
-          {{ (today | date:'yyyy-MM-dd') - (person.dataNascimento | date:'yyyy-MM-dd') }} anos
+          {{ getIdadeFromData(person.dataNascimento) }} anos
         </ng-template>
       </p-column>
       <p-column header="Quantidade de Telefones">

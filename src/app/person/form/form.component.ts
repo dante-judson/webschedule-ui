@@ -21,7 +21,11 @@ export class FormComponent implements OnInit {
     this.getQueryParams();
   }
 
+
   submitForm(){
+
+    console.log(this.person);
+    
     if(this.person.id){
       this.updatePerson(this.person);
     } else {
