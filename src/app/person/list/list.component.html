@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <h1>Lista de Pessoas</h1>
+  <hr>
+
+  <div class="row">
+    <div class="form-group col">
+      <label>Nome:</label>
+      <input type="text" class="form-control">
+    </div>
+
+    <div class="form-group col">
+      <label>CPF:</label>
+      <input type="text" class="form-control">
+    </div>
+  </div>
+
+  <div class="row ml-1">
+    <button class="btn btn-primary mb-2" [routerLink]="['/form']">Cadastrar</button>
+
+    <p-dataTable [value]="persons" [responsive]="true">
+      <p-column field="id" header="ID"></p-column>
+      <p-column field="nome" header="Nome"></p-column>
+      <p-column field="email" header="Email"></p-column>
+      <p-column header="Idade">
+        <ng-template pTemplate="body" let-person="rowData">
+          {{ (today | date:'yyyy-MM-dd') - (person.dataNascimento | date:'yyyy-MM-dd') }} anos
+        </ng-template>
+      </p-column>
+      <p-column header="Quantidade de Telefones">
+        <ng-template pTemplate="body" let-person="rowData">
+          {{person.telefones.length}}
+        </ng-template>
+      </p-column>
+      <p-column header="Ações" [style]="{'width':'105px'}">
+        <ng-template pTemplate="body" let-person="rowData">
+          <button class="btn btn-primary" [routerLink]="['/form']" [queryParams]="{id: person.id}"><i class="fa fa-pencil-square-o"></i></button>
+          <button class="btn btn-danger" (click)="deletePerson(person.id)"><i class="fa fa-trash"></i></button>
+        </ng-template>
+      </p-column>
+  </p-dataTable>
+
+  </div>
+</div>
