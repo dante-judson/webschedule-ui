@@ -16,9 +16,9 @@
       <p-column field="nome" header="Nome"></p-column>
       <p-column field="email" header="Email"></p-column>
       <p-column field="cpf" header="CPF"></p-column>
-      <p-column header="Idade">
+      <p-column header="Idade (anos)">
         <ng-template pTemplate="body" let-person="rowData">
-          {{ getIdadeFromData(person.dataNascimento) }} anos
+          {{ getIdadeFromData(person.dataNascimento) }}
         </ng-template>
       </p-column>
       <p-column header="Quantidade de Telefones">
